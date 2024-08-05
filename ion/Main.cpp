@@ -85,9 +85,29 @@ void PingIP(char *ipAddress)
     // getchar();
 }
 
+// my_c_functions.h
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+    void my_c_function(); // Declare your C function
+
+#ifdef __cplusplus
+}
+#endif
+
+void my_c_function()
+{
+    // print hello in C
+    std::string hello = "Hello from C!";
+    printf("%s\n", hello.c_str());
+}
+
 int main(int argc, char *argv[])
 {
 
+    my_c_function(); // Call your C function
     // write what command was executed and save to a file
     FILE *file = fopen("log.txt", "a");
 
@@ -99,7 +119,6 @@ int main(int argc, char *argv[])
 
     // parameters
     fprintf(file, "{Command: '%s', Parameter: '%s'}\n", argv[1], argv[2] ? argv[2] : "NULL");
-
     fclose(file);
 
     // check if it has / before the command
@@ -162,7 +181,7 @@ int main(int argc, char *argv[])
         printf("\033[1;34mIon\033[0m: A simple network utility\n");
         printf("\033[1;31mPrefix\033[0m: /\n");
         printf("  Usage: %s <command> <URL or IP>\n", argv[0]);
-        
+
         printf("  \nNetwork Related:\n");
         printf("  \033[1;31mget\033[0m   - Retrieve information from a website\n");
         printf("  \033[1;31mping\033[0m  - Ping an IP address\n");

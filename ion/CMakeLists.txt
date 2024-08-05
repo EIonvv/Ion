@@ -1,8 +1,10 @@
 ﻿cmake_minimum_required(VERSION 3.20)
-project(ion LANGUAGES CXX)
+project(ion LANGUAGES CXX C VERSION 1.0.0)
+
+set_property(GLOBAL PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
 
 # Set the build directory explicitly
-set(CMAKE_BINARY_DIR "E:/C++/TestSocket/build")
+set(CMAKE_BINARY_DIR "E:/C++/ion/build")
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -53,6 +55,9 @@ endif()
 
 # Include directories
 target_include_directories(ion PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_link_libraries(ion PRIVATE ws2_32)
 
 # Set output directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)

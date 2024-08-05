@@ -4,7 +4,7 @@
             "CMAKE_EXPORT_COMPILE_COMMANDS": true,
             "CMAKE_BUILD_TYPE": "Release"
         },
-    "cmake.sourceDirectory": "E:/C++/TestSocket/ion",
+    "cmake.sourceDirectory": "E:/C++/Ion/ion",
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "xstring": "cpp",
