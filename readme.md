@@ -7,11 +7,11 @@
  - arp - Display current machines ARP table 
 
 # 2 Windows Defender Utilities
- - Display Exclusions - Mostly used to ignore flagged payloads, or just entirely ignore a drive.
- - Remove Exclusion - Manually remove an shown exclusions
+ - exclusions - Mostly used to ignore flagged payloads, or just entirely ignore a drive.
+ - removeExclusion - Manually remove an shown exclusions
 
 # 2 Checks for Startup Programs
- - Startup Folder Check 
- - Registry Startup Check
+ - startupCheck - Check startup Folder for Programs.
+ - reg_startupCheck - Check startup programs in the registry
 
 ![alt text](gh/image.png)
