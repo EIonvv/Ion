@@ -28,25 +28,25 @@ add_executable(
   ion 
 
   "Main.cpp"
-  "Main.hpp"        
+  "Main.hpp"    
+  "my_c_functions.h"    
 
-  "modules/Ping.cpp"
-  "modules/Ping.hpp"
+  "modules/checks/network/checkArpTable.cpp"
+  "modules/checks/network/checkArpTable.hpp"
 
-  "modules/checks/checkArpTable.cpp"
-  "modules/checks/checkArpTable.hpp"
-
-  "modules/checks/checkExclusions.cpp"
-  "modules/checks/checkExclusions.hpp"
+  "modules/checks/windows_defender/checkExclusions.cpp"
+  "modules/checks/windows_defender/checkExclusions.hpp"
   
-  "modules/checks/checkStartup.cpp"
-  "modules/checks/checkStartup.hpp"
-
-  "modules/checks/checkRegStartup.cpp"
-  "modules/checks/checkRegStartup.hpp"
+  "modules/checks/startup/checkStartup.cpp"
+  "modules/checks/startup/checkStartup.hpp"
+  "modules/checks/startup/checkRegStartup.cpp"
+  "modules/checks/startup/checkRegStartup.hpp"
 
   "modules/removals/removeExclusion.cpp"
   "modules/removals/removeExclusion.hpp"
+  
+  "modules/Ping.cpp"
+  "modules/Ping.hpp"
   )
 
 

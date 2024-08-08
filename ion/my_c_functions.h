@@ -3,7 +3,7 @@ extern "C"
 {
 #endif
 
-    void my_c_function(); // Declare your C function
+    void UserName(); // Declare your C function
 
 #ifdef __cplusplus
 }

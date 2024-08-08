@@ -1,5 +1,27 @@
-#include "Main.hpp"
 #include "my_c_functions.h"
+#include "Main.hpp"
+
+extern "C"
+{
+    void UserName()
+    {
+        // print the user's name
+        char name[100];
+
+        // find the user name in environment
+        if (getenv("USERNAME") != NULL)
+        {
+            strcpy(name, getenv("USERNAME"));
+        }
+        else
+        {
+            strcpy(name, "User");
+        }
+
+        // print the user name
+        printf("Hello \033[1;34m%s\033[0m!\n", name);
+    };
+};
 
 int GetInfo(int argc, char *argv[])
 {
@@ -70,28 +92,6 @@ int GetInfo(int argc, char *argv[])
     WSACleanup();
 
     return 0;
-}
-
-extern "C"
-{
-    void my_c_function()
-    {
-        // print the user's name
-        char name[100];
-
-        // find the user name in environment
-        if (getenv("USERNAME") != NULL)
-        {
-            strcpy(name, getenv("USERNAME"));
-        }
-        else
-        {
-            strcpy(name, "User");
-        }
-
-        // print the user name
-        printf("Hello \033[1;34m%s\033[0m!\n", name);
-    }
 }
 
 int main(int argc, char *argv[])
@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
         // }
 
         // print the prefix
-        my_c_function();
+        UserName();
         printf("\033[1;34mIon\033[0m is a simple utility program.\n");
         printf("  \033[1;34mUsage\033[0m: %s /<command> <URL or IP>\n", argv[0]);
 
@@ -193,8 +193,8 @@ int main(int argc, char *argv[])
         printf("  \033[1;31mremoveExclusion\033[0m - Remove a Windows Defender exclusion\n");
 
         printf("  \nStartup Related:\n");
-        printf("  \033[1;31mstartupCheck\033[0m - Check startup programs\n");
-        printf("  \033[1;31mreg_startupCheck\033[0m - Check startup programs in the registry\n");
+        printf("  \033[1;31mstartupcheck\033[0m - Check startup programs\n");
+        printf("  \033[1;31mreg_startupcheck\033[0m - Check startup programs in the registry\n");
         printf("  \n");
         return 0;
     }
@@ -202,7 +202,7 @@ int main(int argc, char *argv[])
     {
         printf("Invalid command\n");
         return 1;
-    }
+    };
 
     return 0;
-}
+};
