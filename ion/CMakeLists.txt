@@ -24,24 +24,31 @@ if(POLICY CMP0092)
   cmake_policy(SET CMP0092 NEW)
 endif()
 
-
 add_executable(
   ion 
 
   "Main.cpp"
-  "Main.hpp"
-  "my_c_functions.h"
+  "Main.hpp"        
 
-  "modules/checkArpTable.cpp"
-  "modules/checkArpTable.hpp"
+  "modules/Ping.cpp"
+  "modules/Ping.hpp"
 
-  "modules/checkExclusions.cpp"
-  "modules/checkExclusions.hpp"
+  "modules/checks/checkArpTable.cpp"
+  "modules/checks/checkArpTable.hpp"
 
-  "modules/removeExclusion.cpp"
-  "modules/removeExclusion.hpp"
+  "modules/checks/checkExclusions.cpp"
+  "modules/checks/checkExclusions.hpp"
+  
+  "modules/checks/checkStartup.cpp"
+  "modules/checks/checkStartup.hpp"
 
+  "modules/checks/checkRegStartup.cpp"
+  "modules/checks/checkRegStartup.hpp"
+
+  "modules/removals/removeExclusion.cpp"
+  "modules/removals/removeExclusion.hpp"
   )
+
 
 if(CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ion PROPERTY CXX_STANDARD 20)

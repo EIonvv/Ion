@@ -72,44 +72,43 @@ int GetInfo(int argc, char *argv[])
     return 0;
 }
 
-void PingIP(char *ipAddress)
-{
-    // Construct the ping command string
-    char cmd[256] = "ping -n 4 "; // -n specifies the number of echo requests to send
-    strcat(cmd, ipAddress);       // Append the IP address to the command
-
-    // Execute the ping command
-    system(cmd);
-
-    // Optionally, wait for the user to press Enter before closing the console window
-    // printf("\nPress Enter to exit...");
-    // getchar();
-}
-
 extern "C"
 {
     void my_c_function()
     {
-        printf("Hello from C!\n");
+        // print the user's name
+        char name[100];
+
+        // find the user name in environment
+        if (getenv("USERNAME") != NULL)
+        {
+            strcpy(name, getenv("USERNAME"));
+        }
+        else
+        {
+            strcpy(name, "User");
+        }
+
+        // print the user name
+        printf("Hello \033[1;34m%s\033[0m!\n", name);
     }
 }
 
 int main(int argc, char *argv[])
 {
 
-    my_c_function(); // Call your C function
     // write what command was executed and save to a file
-    FILE *file = fopen("log.txt", "a");
+    // FILE *file = fopen("log.txt", "a");
 
-    if (file == NULL)
-    {
-        printf("Error opening file!\n");
-        return 1;
-    }
+    // if (file == NULL)
+    // {
+    //     printf("Error opening file!\n");
+    //     return 1;
+    // }
 
-    // parameters
-    fprintf(file, "{Command: '%s', Parameter: '%s'}\n", argv[1], argv[2] ? argv[2] : "NULL");
-    fclose(file);
+    // // parameters
+    // fprintf(file, "{Command: '%s', Parameter: '%s'}\n", argv[1], argv[2] ? argv[2] : "NULL");
+    // fclose(file);
 
     // check if it has / before the command
     if (argc < 2 || argv[1][0] != '/')
@@ -126,12 +125,13 @@ int main(int argc, char *argv[])
         {
             GetInfo(argc, argv);
         }
+        return 0;
     }
     else if (strcmp(argv[1], "/ping") == 0)
     {
         // Clear screen
         system("cls");
-        PingIP(argv[2]);
+        Ping::pingHost(argv[2]);
         return 0;
     }
     else if (strcmp(argv[1], "/arp") == 0)
@@ -146,6 +146,17 @@ int main(int argc, char *argv[])
         // Clear screen
         system("cls");
         checkExclusions::ExclusionCheck();
+        return 0;
+    }
+
+    else if (strcmp(argv[1], "/startupcheck") == 0)
+    {
+        checkStartupFolder::checkFolder();
+        return 0;
+    }
+    else if (strcmp(argv[1], "/reg_startupcheck") == 0)
+    {
+        checkRegStartup::checkRegStartUp();
         return 0;
     }
     else if (strcmp(argv[1], "/removeExclusion") == 0)
@@ -168,9 +179,9 @@ int main(int argc, char *argv[])
         // }
 
         // print the prefix
-        printf("\033[1;34mIon\033[0m: A simple network utility\n");
-        printf("\033[1;31mPrefix\033[0m: /\n");
-        printf("  Usage: %s <command> <URL or IP>\n", argv[0]);
+        my_c_function();
+        printf("\033[1;34mIon\033[0m is a simple utility program.\n");
+        printf("  \033[1;34mUsage\033[0m: %s /<command> <URL or IP>\n", argv[0]);
 
         printf("  \nNetwork Related:\n");
         printf("  \033[1;31mget\033[0m   - Retrieve information from a website\n");
@@ -180,6 +191,10 @@ int main(int argc, char *argv[])
         printf("  \nWindows Defender Related:\n");
         printf("  \033[1;31mexclusions\033[0m - Display Windows Defender exclusions\n");
         printf("  \033[1;31mremoveExclusion\033[0m - Remove a Windows Defender exclusion\n");
+
+        printf("  \nStartup Related:\n");
+        printf("  \033[1;31mstartupCheck\033[0m - Check startup programs\n");
+        printf("  \033[1;31mreg_startupCheck\033[0m - Check startup programs in the registry\n");
         printf("  \n");
         return 0;
     }

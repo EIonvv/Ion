@@ -8,6 +8,9 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "xstring": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "xlocinfo": "cpp",
+        "filesystem": "cpp",
+        "chrono": "cpp"
     },
 }
