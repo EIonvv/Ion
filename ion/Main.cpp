@@ -1,4 +1,5 @@
 #include "Main.hpp"
+#include "my_c_functions.h"
 
 int GetInfo(int argc, char *argv[])
 {
@@ -85,23 +86,12 @@ void PingIP(char *ipAddress)
     // getchar();
 }
 
-// my_c_functions.h
-#ifdef __cplusplus
 extern "C"
 {
-#endif
-
-    void my_c_function(); // Declare your C function
-
-#ifdef __cplusplus
-}
-#endif
-
-void my_c_function()
-{
-    // print hello in C
-    std::string hello = "Hello from C!";
-    printf("%s\n", hello.c_str());
+    void my_c_function()
+    {
+        printf("Hello from C!\n");
+    }
 }
 
 int main(int argc, char *argv[])

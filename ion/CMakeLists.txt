@@ -30,6 +30,7 @@ add_executable(
 
   "Main.cpp"
   "Main.hpp"
+  "my_c_functions.h"
 
   "modules/checkArpTable.cpp"
   "modules/checkArpTable.hpp"
