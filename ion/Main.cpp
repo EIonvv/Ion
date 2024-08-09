@@ -165,7 +165,6 @@ int main(int argc, char *argv[])
         checkExclusions::ExclusionCheck();
         return 0;
     }
-
     else if (strcmp(argv[1], "/removeExclusion") == 0)
     {
         // Clear screen
@@ -188,7 +187,6 @@ int main(int argc, char *argv[])
 
         // print the prefix
         printf(UserName());
-        printf("\n\033[1;34mIon\033[0m is a simple utility program.\n");
         printf("  \033[1;34mUsage\033[0m: %s /<command> <URL or IP>\n", argv[0]);
 
         printf("  \nNetwork Related:\n");
