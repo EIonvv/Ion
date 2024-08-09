@@ -140,15 +140,7 @@ int main(int argc, char *argv[])
         system("cls");
         CheckArpTable::checkTable();
         return 0;
-    }
-    else if (strcmp(argv[1], "/exclusions") == 0)
-    {
-        // Clear screen
-        system("cls");
-        checkExclusions::ExclusionCheck();
-        return 0;
-    }
-
+    } 
     else if (strcmp(argv[1], "/startupcheck") == 0)
     {
         checkStartupFolder::checkFolder();
@@ -159,6 +151,14 @@ int main(int argc, char *argv[])
         checkRegStartup::checkRegStartUp();
         return 0;
     }
+    else if (strcmp(argv[1], "/exclusions") == 0)
+    {
+        // Clear screen
+        system("cls");
+        checkExclusions::ExclusionCheck();
+        return 0;
+    }
+
     else if (strcmp(argv[1], "/removeExclusion") == 0)
     {
         // Clear screen

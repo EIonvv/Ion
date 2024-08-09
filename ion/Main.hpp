@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "modules/checks/network/checkArpTable.hpp"
 #include "modules/checks/startup/checkStartup.hpp"
 #include "modules/checks/startup/checkRegStartup.hpp"
-#include "modules/checks/network/checkArpTable.hpp"
 #include "modules/checks/windows_defender/checkExclusions.hpp"
 
 #include "modules/removals/removeExclusion.hpp"
