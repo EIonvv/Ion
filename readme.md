@@ -16,4 +16,4 @@
  - reg_startupCheck - Check startup programs in the registry
  - taskcheck - Check Tash Scheduler.
 
-![alt text](gh/image.png)
+![image](https://github.com/user-attachments/assets/1b1bbe06-7b0e-4e1a-9fbb-41bc81df0da0)
