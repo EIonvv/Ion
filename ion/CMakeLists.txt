@@ -28,7 +28,7 @@ add_executable(
   ion 
   "Main.cpp"
   "Main.hpp"
-  "obfuscate.hpp"  
+  "resources/obfuscate.hpp"  
 )
 
 add_subdirectory(modules)

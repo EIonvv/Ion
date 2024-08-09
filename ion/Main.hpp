@@ -1,6 +1,7 @@
 #pragma once
 #pragma comment(lib, "Ws2_32.lib")
 #pragma comment(lib, "advapi32.lib")
+#include "resources/obfuscate.hpp"
 
 #include "modules/checks/network/checkArpTable.hpp"
 #include "modules/checks/startup/checkStartup.hpp"
