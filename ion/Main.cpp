@@ -1,3 +1,4 @@
+#include "obfuscate.hpp"
 #include "my_c_functions.h"
 #include "Main.hpp"
 
@@ -119,7 +120,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    if (strcmp(argv[1], "/get") == 0)
+    if (strcmp(argv[1], AY_OBFUSCATE("/get")) == 0)
     {
         // Clear screen
         system("cls");
@@ -129,12 +130,9 @@ int main(int argc, char *argv[])
         }
         return 0;
     }
-    else if (strcmp(argv[1], "/ping") == 0)
+    else if (strcmp(argv[1], AY_OBFUSCATE("/ping")) == 0)
     {
-        // Clear screen
-        system("cls");
-        Ping::pingHost(argv[2]);
-        return 0;
+        // Not implemented
     }
     else if (strcmp(argv[1], "/arp") == 0)
     {
@@ -143,12 +141,12 @@ int main(int argc, char *argv[])
         CheckArpTable::checkTable();
         return 0;
     }
-    else if (strcmp(argv[1], "/startupcheck") == 0)
+    else if (strcmp(argv[1], "/startupcheck_folder") == 0)
     {
         checkStartupFolder::checkFolder();
         return 0;
     }
-    else if (strcmp(argv[1], "/reg_startupcheck") == 0)
+    else if (strcmp(argv[1], "/startupcheck_registry") == 0)
     {
         checkRegStartup::checkRegStartUp();
         return 0;
@@ -165,16 +163,23 @@ int main(int argc, char *argv[])
         checkExclusions::ExclusionCheck();
         return 0;
     }
-    else if (strcmp(argv[1], "/removeExclusion") == 0)
+    else if (strcmp(argv[1], "/removeExclusionPath") == 0)
     {
         // Clear screen
         system("cls");
         removeExclusion::removePath(argc, argv);
         return 0;
     }
+    else if (strcmp(argv[1], "/removeExclusionExtension") == 0)
+    {
+        // Clear screen
+        system("cls");
+        removeExclusion::removeExtension(argc, argv);
+        return 0;
+    }
     else if (
         strcmp(argv[1], "/?") == 0 ||
-        strcmp(argv[1], "/h") == 0 || 
+        strcmp(argv[1], "/h") == 0 ||
         strcmp(argv[1], "?") == 0)
     {
         system("cls");
@@ -186,22 +191,23 @@ int main(int argc, char *argv[])
         // }
 
         // print the prefix
-        printf(UserName());
+        printf("  \033[1;34mHello\033[0m, %s!\n", UserName());
         printf("  \033[1;34mUsage\033[0m: %s /<command> <URL or IP>\n", argv[0]);
 
         printf("  \nNetwork Related:\n");
         printf("  \033[1;31mget\033[0m   - Retrieve information from a website\n");
-        printf("  \033[1;31mping\033[0m  - Ping an IP address\n");
         printf("  \033[1;31marp\033[0m   - Display ARP table\n");
+        printf("  \033[1;31mping\033[0m  - Ping an IP address\n");
 
         printf("  \nWindows Defender Related:\n");
         printf("  \033[1;31mexclusions\033[0m - Display Windows Defender exclusions\n");
-        printf("  \033[1;31mremoveExclusion\033[0m - Remove a Windows Defender exclusion\n");
+        printf("  \033[1;31mremoveExclusionPath\033[0m - Remove Windows Defender exclusion by path\n");
+        printf("  \033[1;31mremoveExclusionExtension\033[0m - Remove Windows Defender exclusion by extension\n");
 
         printf("  \nStartup Related:\n");
-        printf("  \033[1;31mstartupcheck\033[0m - Check startup programs\n");
-        printf("  \033[1;31mreg_startupcheck\033[0m - Check startup programs in the registry\n");
         printf("  \033[1;31mtaskcheck\033[0m - Check Task Scheduler\n");
+        printf("  \033[1;31mstartupcheck_folder\033[0m - Check startup programs in the startup folder\n");
+        printf("  \033[1;31mstartupcheck_registry\033[0m - Check startup programs in the registry\n");
         printf("  \n");
         return 0;
     }

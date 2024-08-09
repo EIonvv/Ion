@@ -12,3 +12,16 @@ void removeExclusion::removePath(int argc, char *argv[])
 
     std::cout << "Exclusion removed" << std::endl;
 };
+
+void removeExclusion::removeExtension(int argc, char *argv[])
+{
+    std::string command = "powershell -Command \"Remove-MpPreference -ExclusionExtension " + std::string(argv[2]) + "\"";
+    int result = system(command.c_str());
+
+    if (result != 0)
+    {
+        std::cerr << "Failed to execute command" << std::endl;
+    }
+
+    std::cout << "Exclusion removed" << std::endl;
+};

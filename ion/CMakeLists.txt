@@ -27,13 +27,11 @@ endif()
 add_executable(
   ion 
   "Main.cpp"
-  "Main.hpp"    
-  )
+  "Main.hpp"
+  "obfuscate.hpp"  
+)
 
 add_subdirectory(modules)
-
-
-
 
 if(CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ion PROPERTY CXX_STANDARD 20)
@@ -49,8 +47,7 @@ endif()
 # Include directories
 target_include_directories(ion PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-
-target_link_libraries(ion PRIVATE ws2_32)
+target_link_libraries(ion PRIVATE ws2_32 advapi32)
 
 # Set output directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -59,7 +56,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set_target_properties(ion PROPERTIES POSITION_INDEPENDENT_CODE ON)
 set_target_properties(ion PROPERTIES STRIP_ON_DEPLOY ON)
 set_target_properties(ion PROPERTIES STRIP ON)
-
+# Set the executable icon
 # Install targets
 install(TARGETS ion
         RUNTIME DESTINATION bin
