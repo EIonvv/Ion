@@ -3,26 +3,28 @@
 
 extern "C"
 {
-    void UserName()
+    char *UserName()
     {
-        // print the user's name
         char name[100];
 
-        // find the user name in environment
+        // Find the user name in the environment
         if (getenv("USERNAME") != NULL)
         {
-            strcpy(name, getenv("USERNAME"));
+            strncpy(name, getenv("USERNAME"), sizeof(name));
         }
         else
         {
-            strcpy(name, "User");
+            strncpy(name, "User", sizeof(name));
         }
 
-        // print the user name
-        printf("Hello \033[1;34m%s\033[0m!\n", name);
-    };
-};
+        // Allocate memory for the return string
+        size_t len = strlen(name);
+        char *result = new char[len + 1]; // Allocate enough space for the null terminator
+        strcpy(result, name);
 
+        return result;
+    }
+}
 int GetInfo(int argc, char *argv[])
 {
     WSADATA wsaData;
@@ -140,7 +142,7 @@ int main(int argc, char *argv[])
         system("cls");
         CheckArpTable::checkTable();
         return 0;
-    } 
+    }
     else if (strcmp(argv[1], "/startupcheck") == 0)
     {
         checkStartupFolder::checkFolder();
@@ -149,6 +151,11 @@ int main(int argc, char *argv[])
     else if (strcmp(argv[1], "/reg_startupcheck") == 0)
     {
         checkRegStartup::checkRegStartUp();
+        return 0;
+    }
+    else if (strcmp(argv[1], "/taskcheck") == 0)
+    {
+        checkTaskScheduler::check();
         return 0;
     }
     else if (strcmp(argv[1], "/exclusions") == 0)
@@ -168,7 +175,8 @@ int main(int argc, char *argv[])
     }
     else if (
         strcmp(argv[1], "/?") == 0 ||
-        strcmp(argv[1], "/h") == 0)
+        strcmp(argv[1], "/h") == 0 || 
+        strcmp(argv[1], "?") == 0)
     {
         system("cls");
 
@@ -179,8 +187,8 @@ int main(int argc, char *argv[])
         // }
 
         // print the prefix
-        UserName();
-        printf("\033[1;34mIon\033[0m is a simple utility program.\n");
+        printf(UserName());
+        printf("\n\033[1;34mIon\033[0m is a simple utility program.\n");
         printf("  \033[1;34mUsage\033[0m: %s /<command> <URL or IP>\n", argv[0]);
 
         printf("  \nNetwork Related:\n");
@@ -195,6 +203,7 @@ int main(int argc, char *argv[])
         printf("  \nStartup Related:\n");
         printf("  \033[1;31mstartupcheck\033[0m - Check startup programs\n");
         printf("  \033[1;31mreg_startupcheck\033[0m - Check startup programs in the registry\n");
+        printf("  \033[1;31mtaskcheck\033[0m - Check Task Scheduler\n");
         printf("  \n");
         return 0;
     }

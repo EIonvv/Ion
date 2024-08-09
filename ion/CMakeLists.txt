@@ -34,11 +34,14 @@ add_executable(
   "modules/checks/network/checkArpTable.cpp"
   "modules/checks/network/checkArpTable.hpp"
 
+  "modules/checks/startup/checkRegStartup.cpp"
+  "modules/checks/startup/checkRegStartup.hpp"
+
   "modules/checks/startup/checkStartup.cpp"
   "modules/checks/startup/checkStartup.hpp"
 
-  "modules/checks/startup/checkRegStartup.cpp"
-  "modules/checks/startup/checkRegStartup.hpp"
+  "modules/checks/startup/checkTaskScheduler.cpp"
+  "modules/checks/startup/checkTaskScheduler.hpp"
   
   "modules/checks/windows_defender/checkExclusions.cpp"
   "modules/checks/windows_defender/checkExclusions.hpp"

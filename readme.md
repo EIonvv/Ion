@@ -10,8 +10,9 @@
  - exclusions - Mostly used to ignore flagged payloads, or just entirely ignore a drive.
  - removeExclusion - Manually remove an shown exclusions
 
-# 2 Checks for Startup Programs
+# 3 Checks for Startup Programs
  - startupCheck - Check startup Folder for Programs.
  - reg_startupCheck - Check startup programs in the registry
+ - taskcheck - Check Tash Scheduler.
 
 ![alt text](gh/image.png)
