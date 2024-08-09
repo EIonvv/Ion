@@ -6,9 +6,10 @@
  - ping - Ping an IP Address/host
  - arp - Display current machines ARP table 
 
-# 2 Windows Defender Utilities
+# 3 Windows Defender Utilities
  - exclusions - Mostly used to ignore flagged payloads, or just entirely ignore a drive.
- - removeExclusion - Manually remove an shown exclusions
+ - removeExclusionPath - Remove a Path 
+ - removeExclusionExtension - Remove a Extension Excluded.
 
 # 3 Checks for Startup Programs
  - startupCheck - Check startup Folder for Programs.
