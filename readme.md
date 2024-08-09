@@ -15,4 +15,4 @@
  - reg_startupCheck - Check startup programs in the registry
  - taskcheck - Check Tash Scheduler.
 
-![alt text](image.png)
+![alt text](gh/image.png)
