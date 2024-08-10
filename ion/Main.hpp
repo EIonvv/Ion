@@ -3,6 +3,7 @@
 #pragma comment(lib, "advapi32.lib")
 #include "resources/obfuscate.hpp"
 
+#include "modules/checks/environment/checkEnvVariables.hpp"
 #include "modules/checks/network/checkArpTable.hpp"
 #include "modules/checks/startup/checkStartup.hpp"
 #include "modules/checks/startup/checkRegStartup.hpp"
