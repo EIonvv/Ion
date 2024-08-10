@@ -28,10 +28,10 @@ add_executable(
   ion 
   "Main.cpp"
   "Main.hpp"
-  "resources/obfuscate.hpp"  
 )
 
 add_subdirectory(modules)
+add_subdirectory(resources)
 
 if(CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ion PROPERTY CXX_STANDARD 20)
