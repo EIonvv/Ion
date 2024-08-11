@@ -2,5 +2,5 @@
 
 void CheckArpTable::checkTable()
 {
-    system("arp -a");
+    system(AY_OBFUSCATE("arp -a"));
 }

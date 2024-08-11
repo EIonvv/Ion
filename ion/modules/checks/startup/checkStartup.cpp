@@ -3,12 +3,12 @@
 void checkStartupFolder::checkFolder()
 {
         // first get the path of the startup folder
-    char* startupFolder = getenv("APPDATA");
+    char* startupFolder = getenv(AY_OBFUSCATE("APPDATA"));
 
     // check if the path is null
     if (startupFolder == NULL)
     {
-        std::cerr << "Failed to get the path of the startup folder" << std::endl;
+        std::cerr << AY_OBFUSCATE("Failed to get the path of the startup folder") << std::endl;
         return;
     }
 
@@ -16,7 +16,7 @@ void checkStartupFolder::checkFolder()
     std::string path = startupFolder;
 
     // append the name of the startup folder to the path
-    path += "\\Microsoft\\Windows\\Start Menu\\Programs\\Startup";
+    path += AY_OBFUSCATE("\\Microsoft\\Windows\\Start Menu\\Programs\\Startup");
 
     // create a handle to the directory
     HANDLE hFind;
@@ -30,7 +30,7 @@ void checkStartupFolder::checkFolder()
     // check if the handle is valid
     if (hFind == INVALID_HANDLE_VALUE)
     {
-        std::cerr << "Failed to open directory" << std::endl;
+        std::cerr << AY_OBFUSCATE("Failed to open directory") << std::endl;
         return;
     };
 
@@ -38,7 +38,7 @@ void checkStartupFolder::checkFolder()
     do
     {
         // print the name of the file
-        std::cout << "Startup item: " << data.cFileName << std::endl;
+        std::cout << AY_OBFUSCATE("Startup item: ") << data.cFileName << std::endl;
     } while (FindNextFile(hFind, &data) != 0);
 
     // close the handle to the directory

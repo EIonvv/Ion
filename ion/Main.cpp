@@ -25,6 +25,7 @@ extern "C"
         return result;
     }
 }
+
 int GetInfo(int argc, char *argv[])
 {
     WSADATA wsaData;
@@ -73,7 +74,7 @@ int GetInfo(int argc, char *argv[])
     // Construct HTTP GET request
     char request[1024] = "GET / HTTP/1.1\r\nHost: ";
     strcat(request, argv[2]); // Use the provided URL or IP
-    strcat(request, "\r\nConnection: close\r\n\r\n");
+    strcat(request, AY_OBFUSCATE("\r\nConnection: close\r\n\r\n"));
 
     // Send request
     send(clientSocket, request, strlen(request), 0);

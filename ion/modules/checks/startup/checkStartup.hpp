@@ -6,6 +6,7 @@
 #include <cstdlib> // For std::system
 #include <iostream>
 #include <filesystem>
+#include "../../../resources/obfuscate.hpp" 
 
 class checkStartupFolder{
 public:

@@ -6,7 +6,7 @@ void checkEnvVariables::CheckVariables()
 
     std::cout << AY_OBFUSCATE("Checking Environment Variables") << std::endl;
 
-    std::system(command.c_str());
+    system(AY_OBFUSCATE("set"));
 
     std::cout << AY_OBFUSCATE("Environment Variables check complete") << std::endl;
 

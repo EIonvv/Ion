@@ -4,7 +4,6 @@ void removeExclusion::removePath(int argc, char *argv[])
 {
     std::string command = "powershell -Command Remove-MpPreference -ExclusionPath " + std::string(argv[2]);
     int result = system(command.c_str());
-
     if (result != 0)
     {
         printf(AY_OBFUSCATE("Failed to execute command"));
