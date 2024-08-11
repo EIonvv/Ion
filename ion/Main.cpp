@@ -149,16 +149,22 @@ int main(int argc, char *argv[])
     }
     else if (strcmp(argv[1], AY_OBFUSCATE("/startupcheck_folder")) == 0)
     {
+        // Clear screen
+        system("cls");
         checkStartupFolder::checkFolder();
         return 0;
     }
     else if (strcmp(argv[1], AY_OBFUSCATE("/startupcheck_registry")) == 0)
     {
+        // Clear screen
+        system("cls");
         checkRegStartup::checkRegStartUp();
         return 0;
     }
     else if (strcmp(argv[1], AY_OBFUSCATE("/taskcheck")) == 0)
     {
+        // Clear screen
+        system("cls");
         checkTaskScheduler::check();
         return 0;
     }
@@ -183,10 +189,7 @@ int main(int argc, char *argv[])
         removeExclusion::removeExtension(argc, argv);
         return 0;
     }
-    else if (
-        strcmp(argv[1], AY_OBFUSCATE("/?")) == 0 ||
-        strcmp(argv[1], AY_OBFUSCATE("/h")) == 0 ||
-        strcmp(argv[1], AY_OBFUSCATE("?")) == 0)
+    else if (strcmp(argv[1], AY_OBFUSCATE("/?")) == 0 || strcmp(argv[1], AY_OBFUSCATE("/h")) == 0 || strcmp(argv[1], AY_OBFUSCATE("?")) == 0)
     {
         system("cls");
 
