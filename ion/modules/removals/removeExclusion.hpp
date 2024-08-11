@@ -1,8 +1,6 @@
 #pragma once
 
-#include <cstdlib> // For std::system
-#include <iostream>
-#include "../../resources/obfuscate.hpp"
+#include "../../core/core.hpp"
 class removeExclusion
 {
 public:

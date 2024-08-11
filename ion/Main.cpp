@@ -71,7 +71,7 @@ int GetInfo(int argc, char *argv[])
     return 0;
 }
 
-int main(int argc, char *argv[])
+int run(int argc, char *argv[])
 {
 
     // write what command was executed and save to a file
@@ -142,6 +142,13 @@ int main(int argc, char *argv[])
         // Clear screen
         system("cls");
         KillProcess::killProc(argc, argv);
+        return 0;
+    }
+    else if (strcmp(argv[1], AY_OBFUSCATE("/tasklist")) == 0)
+    {
+        // Clear screen
+        system("cls");
+        TaskList::taskList(argc, argv);
         return 0;
     }
     else if (strcmp(argv[1], AY_OBFUSCATE("/startupcheck_folder")) == 0)
@@ -217,6 +224,7 @@ int main(int argc, char *argv[])
         printf(AY_OBFUSCATE("  \033[1;31mstartupcheck_registry\033[0m - Check startup programs in the registry\n"));
 
         printf(AY_OBFUSCATE("  \nProcess Information:\n"));
+        printf(AY_OBFUSCATE("  \033[1;31mtasklist\033[0m - List all running processes\n"));
         printf(AY_OBFUSCATE("  \033[1;31mgetprocess\033[0m - Get process\n"));
         printf(AY_OBFUSCATE("  \033[1;31mkillprocess\033[0m - Kill process\n"));
 
@@ -238,3 +246,25 @@ int main(int argc, char *argv[])
 
     return 0;
 };
+
+int main(int argc, char *argv[])
+{
+    // make guard page
+    char *guard_page = (char *)VirtualAlloc(NULL, 4096, MEM_COMMIT | MEM_RESERVE, PAGE_NOACCESS);
+
+    // check if the guard page is null
+    if (guard_page == NULL)
+    {
+        printf("Error creating guard page\n");
+        return 1;
+    }
+    run(argc, argv);
+    // check if the guard page is not null
+    if (guard_page != NULL)
+    {
+        // free the guard page
+        VirtualFree(guard_page, 0, MEM_RELEASE);
+    }
+
+    return 0;
+}

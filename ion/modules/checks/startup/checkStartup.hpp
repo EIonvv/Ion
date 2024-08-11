@@ -1,12 +1,7 @@
 #pragma once
 
-#include <ws2tcpip.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <cstdlib> // For std::system
-#include <iostream>
-#include <filesystem>
-#include "../../../resources/obfuscate.hpp" 
+#include "../../../core/core.hpp"
+
 
 class checkStartupFolder{
 public:

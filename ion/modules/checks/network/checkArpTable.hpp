@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdlib.h>
-#include "../../../resources/obfuscate.hpp"
+#include "../../../core/core.hpp"
+
 
 class CheckArpTable
 {

@@ -1,9 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "../../../resources/obfuscate.hpp" 
+#include "../../../core/core.hpp"
 
 class checkTaskScheduler
 {

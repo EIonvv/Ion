@@ -1,14 +1,9 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <cstdlib> // system
-#include <cstring> // strcmp
-
-#include "resources/obfuscate.hpp"
+#include "../../../ion/core/core.hpp"
 
 class GetProcess
 {
-    public:
-        static void getProc(int argc, char *argv[]);
+public:
+    static void getProc(int argc, char *argv[]);
 };

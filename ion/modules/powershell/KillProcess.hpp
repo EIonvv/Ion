@@ -1,11 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <cstdlib> // system
-#include <cstring> // strcmp
-
-#include "resources/obfuscate.hpp"
+#include "../../../ion/core/core.hpp"
 
 class KillProcess
 {

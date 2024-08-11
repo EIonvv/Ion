@@ -3,5 +3,6 @@ target_sources(ion PRIVATE
     "GetProcess.hpp"
     "KillProcess.cpp"
     "KillProcess.hpp"
-
+    "TaskList.cpp"
+    "TaskList.hpp"
 )

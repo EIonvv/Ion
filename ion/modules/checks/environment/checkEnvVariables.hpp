@@ -1,9 +1,6 @@
 #pragma once 
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include "../../../resources/obfuscate.hpp"
+#include "../../../core/core.hpp"
 
 class checkEnvVariables
 {
