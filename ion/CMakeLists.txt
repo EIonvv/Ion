@@ -33,6 +33,7 @@ add_executable(
   "Main.hpp"
 )
 
+add_subdirectory(core)
 add_subdirectory(modules)
 add_subdirectory(resources)
 

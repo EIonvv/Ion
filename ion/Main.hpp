@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "resources/obfuscate.hpp"
+#include "core/info/osUsername.hpp"
 
 #include "modules/checks/environment/checkEnvVariables.hpp"
 #include "modules/checks/network/checkArpTable.hpp"
@@ -19,4 +19,4 @@
 #include "modules/powershell/KillProcess.hpp"
 
 #include "modules/removals/removeExclusion.hpp"
-#include "my_c_functions.h"
+#include "resources/obfuscate.hpp"

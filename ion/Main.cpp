@@ -1,30 +1,6 @@
-#include "my_c_functions.h"
 #include "Main.hpp"
 
-extern "C"
-{
-    char *UserName()
-    {
-        char name[100];
 
-        // Find the user name in the environment
-        if (getenv("USERNAME") != NULL)
-        {
-            strncpy(name, getenv("USERNAME"), sizeof(name));
-        }
-        else
-        {
-            strncpy(name, "User", sizeof(name));
-        }
-
-        // Allocate memory for the return string
-        size_t len = strlen(name);
-        char *result = new char[len + 1]; // Allocate enough space for the null terminator
-        strcpy(result, name);
-
-        return result;
-    }
-}
 
 int GetInfo(int argc, char *argv[])
 {
@@ -153,7 +129,7 @@ int main(int argc, char *argv[])
         // if argv[1] is none then print all processes
         if (argc < 3)
         {
-            printf("Please provide a process name\n");
+            printf(AY_OBFUSCATE("Please provide a process name\n"));
             return 1;
         }
         else
