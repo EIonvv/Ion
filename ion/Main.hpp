@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "core/info/osUsername.hpp"
+#include "core/info/osUsername.h"
 
 #include "modules/checks/environment/checkEnvVariables.hpp"
 #include "modules/checks/network/checkArpTable.hpp"

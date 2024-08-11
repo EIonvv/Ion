@@ -1,7 +1,5 @@
 #include "Main.hpp"
 
-
-
 int GetInfo(int argc, char *argv[])
 {
     WSADATA wsaData;
@@ -95,7 +93,6 @@ int main(int argc, char *argv[])
         printf("Invalid command try /?\n");
         return 1;
     }
-
     if (strcmp(argv[1], AY_OBFUSCATE("/get")) == 0)
     {
         // Clear screen
@@ -117,7 +114,7 @@ int main(int argc, char *argv[])
         CheckArpTable::checkTable();
         return 0;
     }
-    else if (strcmp(argv[1], AY_OBFUSCATE("/env")) == 0)
+    else if (strcmp(argv[1], AY_OBFUSCATE("/set")) == 0)
     {
         // Clear screen
         system("cls");
@@ -201,6 +198,7 @@ int main(int argc, char *argv[])
 
         // print the prefix
         printf(AY_OBFUSCATE("\033[1;34mHello\033[0m, %s!\n"), UserName());
+
         printf(AY_OBFUSCATE("\033[1;34mUsage\033[0m: %s /<command> <URL or IP>\n"), argv[0]);
 
         printf(AY_OBFUSCATE("  \nNetwork:\n"));
@@ -218,14 +216,18 @@ int main(int argc, char *argv[])
         printf(AY_OBFUSCATE("  \033[1;31mstartupcheck_folder\033[0m - Check startup programs in the startup folder\n"));
         printf(AY_OBFUSCATE("  \033[1;31mstartupcheck_registry\033[0m - Check startup programs in the registry\n"));
 
-        printf(AY_OBFUSCATE("  \nEnvironment:\n"));
-        printf(AY_OBFUSCATE("  \033[1;31menv\033[0m   - Display environment variables\n"));
-
         printf(AY_OBFUSCATE("  \nProcess Information:\n"));
         printf(AY_OBFUSCATE("  \033[1;31mgetprocess\033[0m - Get process\n"));
         printf(AY_OBFUSCATE("  \033[1;31mkillprocess\033[0m - Kill process\n"));
 
+        printf(AY_OBFUSCATE("  \nEnvironment:\n"));
+        printf(AY_OBFUSCATE("  \033[1;31mset\033[0m   - Display environment variables\n"));
+
         printf(AY_OBFUSCATE("  \n"));
+
+        // free the memory
+        delete[] UserName();
+
         return 0;
     }
     else

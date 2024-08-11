@@ -1,1 +1,1 @@
-target_sources(ion PRIVATE "osUsername.cpp" "osUsername.hpp")
+target_sources(ion PRIVATE "osUsername.cpp" "osUsername.h")

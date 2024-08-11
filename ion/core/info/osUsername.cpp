@@ -1,4 +1,4 @@
-#include "osUsername.hpp"
+#include "osUsername.h"
 
 extern "C"
 {
