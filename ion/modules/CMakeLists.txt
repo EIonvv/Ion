@@ -1,2 +1,3 @@
 add_subdirectory(checks)
+add_subdirectory(powershell)
 add_subdirectory(removals)

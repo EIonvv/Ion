@@ -15,5 +15,8 @@
 #include "modules/checks/startup/checkTaskScheduler.hpp"
 #include "modules/checks/windows_defender/checkExclusions.hpp"
 
+#include "modules/powershell/GetProcess.hpp"
+#include "modules/powershell/KillProcess.hpp"
+
 #include "modules/removals/removeExclusion.hpp"
 #include "my_c_functions.h"

@@ -58,13 +58,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set_target_properties(ion PROPERTIES POSITION_INDEPENDENT_CODE ON)
 set_target_properties(ion PROPERTIES STRIP_ON_DEPLOY ON)
 set_target_properties(ion PROPERTIES STRIP ON)
-# Set the executable icon
-# Install targets
-install(TARGETS ion
-        RUNTIME DESTINATION bin
-        COMPONENT Runtime)
 
 # Embed a manifest that requires administrator privileges
 set_target_properties(ion PROPERTIES
     LINK_FLAGS "/MANIFESTUAC:\"level='requireAdministrator' uiAccess='false'\""
 )
+# New line to set the icon for the executable
+set_target_properties(ion PROPERTIES OUTPUT_NAME "Ion")
+
+# Install targets
+install(TARGETS ion
+        RUNTIME DESTINATION bin
+        COMPONENT Runtime)
+
+

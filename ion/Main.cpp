@@ -148,6 +148,29 @@ int main(int argc, char *argv[])
         checkEnvVariables::CheckVariables();
         return 0;
     }
+    else if (strcmp(argv[1], AY_OBFUSCATE("/getprocess")) == 0)
+    {
+        // if argv[1] is none then print all processes
+        if (argc < 3)
+        {
+            printf("Please provide a process name\n");
+            return 1;
+        }
+        else
+        {
+            // Clear screen
+            system("cls");
+            GetProcess::getProc(argc, argv);
+        }
+        return 0;
+    }
+    else if (strcmp(argv[1], AY_OBFUSCATE("/killprocess")) == 0)
+    {
+        // Clear screen
+        system("cls");
+        KillProcess::killProc(argc, argv);
+        return 0;
+    }
     else if (strcmp(argv[1], AY_OBFUSCATE("/startupcheck_folder")) == 0)
     {
         // Clear screen
@@ -221,6 +244,10 @@ int main(int argc, char *argv[])
 
         printf(AY_OBFUSCATE("  \nEnvironment:\n"));
         printf(AY_OBFUSCATE("  \033[1;31menv\033[0m   - Display environment variables\n"));
+
+        printf(AY_OBFUSCATE("  \nProcess Information:\n"));
+        printf(AY_OBFUSCATE("  \033[1;31mgetprocess\033[0m - Get process\n"));
+        printf(AY_OBFUSCATE("  \033[1;31mkillprocess\033[0m - Kill process\n"));
 
         printf(AY_OBFUSCATE("  \n"));
         return 0;
