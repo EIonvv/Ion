@@ -4,7 +4,7 @@ bool CoreManager::Initialize(int argc, char *argv[])
 {
 
 #ifdef WIN32
-    Logger(new const std::string("Windows"));
+    Logger(new const std::string(AY_OBFUSCATE("Windows")));
 #endif
 
 #ifdef __linux__
@@ -15,7 +15,7 @@ bool CoreManager::Initialize(int argc, char *argv[])
     Logger(new const std::string("MacOS"));
 #endif
 
-    Logger(new const std::string(GetUsername()));
+    Logger(new const std::string(AY_OBFUSCATE("Initializing CoreManager")));
 
     return 0;
 }
@@ -32,10 +32,13 @@ std::string CoreManager::GetUsername()
 
     if (username->length() > 0)
     {
+        delete username;
+
         return *username;
     }
 
     delete username;
+
     return 0;
 }
 

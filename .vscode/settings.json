@@ -4,7 +4,7 @@
             "CMAKE_EXPORT_COMPILE_COMMANDS": true,
             "CMAKE_BUILD_TYPE": "Release"
         },
-    "cmake.sourceDirectory": "E:/C++/ion.v2/ion.v2",
+    "cmake.sourceDirectory": "E:/C++/Ion/ion.v2",
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "xstring": "cpp",
@@ -65,6 +65,8 @@
         "xlocnum": "cpp",
         "xloctime": "cpp",
         "xtr1common": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "array": "cpp",
+        "codecvt": "cpp"
     },
 }

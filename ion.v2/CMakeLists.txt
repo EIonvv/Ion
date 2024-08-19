@@ -4,7 +4,7 @@ project(ion LANGUAGES CXX C VERSION 1.0.1)
 set_property(GLOBAL PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
 
 # Set the build directory explicitly
-set(CMAKE_BINARY_DIR "E:/C++/ion.v2/build")
+set(CMAKE_BINARY_DIR "E:/C++/Ion/build")
 set(CMAKE.parallel -j${number_of_cores})
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -33,6 +33,7 @@ add_executable(
 )
 
 add_subdirectory(core)
+add_subdirectory(modules)
 
 if(CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ion PROPERTY CXX_STANDARD 20)
@@ -47,7 +48,7 @@ endif()
 # Include directories
 target_include_directories(ion PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(ion PRIVATE ws2_32 advapi32)
+target_link_libraries(ion PRIVATE ws2_32 advapi32 secur32)
 
 # Set output directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -63,6 +64,9 @@ set_target_properties(ion PROPERTIES STRIP ON)
 # )
 # New line to set the icon for the executable
 set_target_properties(ion PROPERTIES OUTPUT_NAME "Ion")
+
+# set the default startup project
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ion)
 
 # Install targets
 install(TARGETS ion
