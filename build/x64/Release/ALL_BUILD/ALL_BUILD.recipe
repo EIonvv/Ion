@@ -2,13 +2,13 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>E:\C++\Ion.v2\build\x64\Release\ZERO_CHECK</FullPath>
+      <FullPath>E:\C++\Ion\build\x64\Release\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>E:\C++\Ion.v2\build\Release\Ion.exe</FullPath>
+      <FullPath>E:\C++\Ion\build\Release\Ion.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>E:\C++\Ion.v2\build\x64\Release\ALL_BUILD</FullPath>
+      <FullPath>E:\C++\Ion\build\x64\Release\ALL_BUILD</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

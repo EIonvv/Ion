@@ -34,16 +34,16 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/C++/Ion.v2/build/core/debug/cmake_install.cmake")
+  include("E:/C++/Ion/build/core/debug/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/C++/Ion.v2/build/core/resources/cmake_install.cmake")
+  include("E:/C++/Ion/build/core/resources/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/C++/Ion.v2/build/core/systeminfo/cmake_install.cmake")
+  include("E:/C++/Ion/build/core/systeminfo/cmake_install.cmake")
 endif()
 

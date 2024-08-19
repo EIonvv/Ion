@@ -1,6 +1,6 @@
 ^E:\C++\ION.V2\ION.V2\CMAKELISTS.TXT
 setlocal
-D:\cmake\bin\cmake.exe -SE:/C++/Ion.v2/ion.v2 -BE:/C++/Ion.v2/build --check-stamp-file E:/C++/Ion.v2/build/CMakeFiles/generate.stamp
+D:\cmake\bin\cmake.exe -SE:/C++/Ion.v2/ion.v2 -BE:/C++/Ion/build --check-stamp-file E:/C++/Ion/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
