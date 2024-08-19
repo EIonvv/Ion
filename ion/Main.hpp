@@ -7,6 +7,8 @@
 
 // General utility functions
 #include "core/core.hpp"
+#include "core/Module.hpp"
+
 
 // Core functionalities
 #include "core/info/osUsername.h"
@@ -15,7 +17,6 @@
 #include "modules/powershell/GetProcess.hpp"
 #include "modules/powershell/KillProcess.hpp"
 #include "modules/powershell/TaskList.hpp"
-
 
 // Removals and exclusions
 #include "modules/removals/removeExclusion.hpp"
