@@ -1,15 +1,21 @@
 #include "Logger.hpp"
+#include <memory>
 
-bool DebugLogger::LogDynamic(const std::string *message)
+// Assuming AY_OBFUSCATE can be replaced or handled differently
+const char *kInfoLabel = "INFO";
+const char *kSuccessColorCode = "\033[1;32m";
+const char *kResetColorCode = "\033[0m";
+
+bool DebugLogger::Info(const std::string *message, const char *functionName)
 {
-    if (message != nullptr)
+    try
     {
-        std::cout << *message << std::endl;
-        delete message; // Ensure to delete the dynamically allocated string
-
+        std::cout << "[" << kSuccessColorCode << kInfoLabel << kResetColorCode << "] " << functionName << ": " << std::string(*message) << std::endl;
         return true;
     }
-
-    std::cout << AY_OBFUSCATE("Failed to log message.") << std::endl;
-    return false;
+    catch (...)
+    {
+        std::cerr << kResetColorCode << "Exception caught during logging." << std::endl;
+        return false;
+    }
 }

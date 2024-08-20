@@ -9,7 +9,7 @@
 #include "systeminfo/username/OS_Username.hpp"
 #include "systeminfo/timezone/getTimezone.hpp"
 
-class CoreManager
+class CoreManager : public std::string
 {
 public:
     static bool Initialize(int argc, char *argv[]);

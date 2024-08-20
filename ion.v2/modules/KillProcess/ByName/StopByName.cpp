@@ -35,7 +35,7 @@ void StopByName::stop(const std::string &processName)
     FILE *pipe = _popen(cmd.c_str(), "r");
     if (!pipe)
     {
-        DebugLogger::LogDynamic(new const std::string(AY_OBFUSCATE("Failed to execute taskkill")));
+        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Failed to execute taskkill")), __FUNCTION__);
         return;
     }
 
@@ -44,17 +44,17 @@ void StopByName::stop(const std::string &processName)
     {
         if (fgets(buffer, 128, pipe) != NULL)
         {
-            DebugLogger::LogDynamic(new const std::string(buffer));
+            DebugLogger::Info(new const std::string(buffer), __FUNCTION__);
         }
     }
 
     int result = _pclose(pipe);
     if (result == 0)
     {
-        DebugLogger::LogDynamic(new const std::string(AY_OBFUSCATE("Successfully stopped process")));
+        DebugLogger::Info(new const std::string("Successfully stopped process: " + processName), __FUNCTION__);
     }
     else
     {
-        DebugLogger::LogDynamic(new const std::string(AY_OBFUSCATE("Failed to stop process")));
+        DebugLogger::Info(new const std::string("Failed to stop process: " + processName), __FUNCTION__);
     }
 }

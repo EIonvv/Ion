@@ -15,17 +15,21 @@ void ModuleManager::startCmd(std::string command)
     cmd::execute(command);
 }
 
-void ModuleManager::stopProcess(const std::string &processName)
+void ModuleManager::startPowershell(const std::string *command)
+{
+    Powershell::startPowershell(command);
+}
+
+void ModuleManager::stopProcess(const std::string *processName)
 {
     // if no process name is provided, return
-
-    if (processName.empty())
+    if (*processName == "")
     {
-        DebugLogger::LogDynamic(new const std::string(AY_OBFUSCATE("No process name provided")));
+        DebugLogger::Info(new const std::string(AY_OBFUSCATE("No process name provided")), __FUNCTION__);
         return;
-    }
+    } 
 
-    StopByName::stop(processName);
+    StopByName::stop(*processName);
 }
 
 void ModuleManager::stopPID(DWORD processID)

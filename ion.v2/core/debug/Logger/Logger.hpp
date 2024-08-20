@@ -4,8 +4,12 @@
 
 #include "../../resources/obfuscate.hpp"
 
-class DebugLogger {
+class DebugLogger
+{
+
+private:
+    static std::string version;
 
 public:
-    static bool LogDynamic(const std::string* message);
+    static bool Info(const std::string *message, const char *functionName);
 };

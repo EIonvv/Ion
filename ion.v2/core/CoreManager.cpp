@@ -2,7 +2,6 @@
 
 bool CoreManager::Initialize(int argc, char *argv[])
 {
-    bool is_initialized;
 #ifdef WIN32
     Logger(new const std::string(AY_OBFUSCATE("Windows")));
     bool check = Logger(new const std::string(AY_OBFUSCATE("Initializing CoreManager")), false);
@@ -46,7 +45,7 @@ bool CoreManager::Logger(const std::string *message, bool debug_mode)
 
         try
         {
-            logger->LogDynamic(message);
+            logger->Info(message, __FUNCTION__);
         }
         catch (const std::exception &e)
         {
