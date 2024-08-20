@@ -1,6 +1,6 @@
 #include "calc.hpp"
 
-void calc::start()
+void calc::execute()
 {
     STARTUPINFO si;
     PROCESS_INFORMATION pi;

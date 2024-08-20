@@ -5,19 +5,62 @@ bool CoreManager::Initialize(int argc, char *argv[])
 
 #ifdef WIN32
     Logger(new const std::string(AY_OBFUSCATE("Windows")));
+    bool check = Logger(new const std::string(AY_OBFUSCATE("Initializing CoreManager")), false);
+
+    if (!check)
+    {
+        return false;
+    }
+    if (check)
+    {
+        Logger(new const std::string(AY_OBFUSCATE("CoreManager initialized")), false);
+    }
+
+    return true;
 #endif
 
 #ifdef __linux__
     Logger(new const std::string("Linux"));
+    return true;
 #endif
 
 #ifdef __APPLE__
     Logger(new const std::string("MacOS"));
+    return true;
 #endif
+}
 
-    Logger(new const std::string(AY_OBFUSCATE("Initializing CoreManager")));
+/**
+ * @brief Log a message to the console
+ *
+ * @c std::string* `message` - The message to log
+ * @return void
+ *
+ */
+bool CoreManager::Logger(const std::string *message, bool debug_mode)
+{
+    if (debug_mode)
+    {
+        DebugLogger *logger = new DebugLogger();
 
-    return 0;
+        try
+        {
+            logger->LogDynamic(message);
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+            return false;
+        }
+
+        delete logger;
+
+        return true;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 std::string CoreManager::GetUsername()
@@ -27,7 +70,7 @@ std::string CoreManager::GetUsername()
     if (username->empty())
     {
         Logger(new const std::string(AY_OBFUSCATE("Failed to get username")));
-        return "Failed to get username";
+        return std::string(AY_OBFUSCATE("Failed to get username"));
     }
 
     if (username->length() > 0)
@@ -42,18 +85,13 @@ std::string CoreManager::GetUsername()
     return 0;
 }
 
-/**
- * @brief Log a message to the console
- *
- * @c std::string* `message` - The message to log
- * @return void
- *
- */
-void CoreManager::Logger(const std::string *message)
+std::string CoreManager::Timezone()
 {
-    DebugLogger *logger = new DebugLogger();
+    getTimezone *tz = new getTimezone();
 
-    logger->LogDynamic(message);
+    std::string *timezone = new std::string(tz->Timezone());
 
-    delete logger;
+    delete tz;
+
+    return *timezone;
 }

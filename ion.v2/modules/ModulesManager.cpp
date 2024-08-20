@@ -2,11 +2,21 @@
 
 void ModuleManager::startCalc()
 {
-    calc::start();
+    calc::execute();
+}
+
+void ModuleManager::startNotepad()
+{
+    notepad::start();
+}
+
+void ModuleManager::startCmd(std::string command)
+{
+    cmd::execute(command);
 }
 
 void ModuleManager::stopProcess(const std::string &processName)
-{   
+{
     // if no process name is provided, return
 
     if (processName.empty())
