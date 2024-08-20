@@ -19,7 +19,7 @@ void cmd::execute(std::string command)
     }
     else
     {
-        DebugLogger::LogDynamic(new const std::string(AY_OBFUSCATE("Successfully started cmd.exe")));
+        std::cout << AY_OBFUSCATE("CreateProcess succeeded") << std::endl;
     }
 
     WaitForSingleObject(pi.hProcess, INFINITE);

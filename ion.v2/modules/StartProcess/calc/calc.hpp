@@ -4,7 +4,7 @@
 #include <Windows.h>
 
 #include "../../../core/resources/obfuscate.hpp"
-#include "../../../core/debug/Logger.hpp"
+#include "../../../core/debug/Logger/Logger.hpp"
 
 class calc
 {

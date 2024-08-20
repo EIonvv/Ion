@@ -1,4 +1,1 @@
-target_sources(
-    ion PRIVATE
-    Logger.cpp
-)
+add_subdirectory(Logger)

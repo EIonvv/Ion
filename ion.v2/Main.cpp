@@ -8,18 +8,27 @@ int main(int argc, char *argv[])
     ModuleManager *module_manager = new ModuleManager();
     DebugLogger *logger = new DebugLogger();
 
-    // if the core manager fails to initialize, return 1
-    if (!core_manager->Initialize(argc, argv))
+    char *input = argv[1];
+
+
+    if (!core_manager->Initialize(argc, argv)) 
     {
         return 1;
     }
 
+
+    if (core_manager->Timezone() != "UTC")
+    {
+        logger->LogDynamic(new const std::string(AY_OBFUSCATE("Timezone is not UTC")));
+    } else {
+        logger->LogDynamic(new const std::string(AY_OBFUSCATE("Timezone is UTC")));
+    }
+
     module_manager->startCmd("/c echo Hello World");
 
-    // Handle the command line arguments
-    module_manager->stopProcess(argv[1] == nullptr ? "" : argv[1]);
 
-    // Clean up
+    module_manager->stopProcess(input == NULL ? "" : input);
+
     delete core_manager;
     delete module_manager;
     delete logger;

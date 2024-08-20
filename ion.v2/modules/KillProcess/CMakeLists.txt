@@ -1,1 +1,2 @@
-target_sources(ion PRIVATE "StopByName.cpp")
+add_subdirectory(ByName)
+add_subdirectory(ByPID)

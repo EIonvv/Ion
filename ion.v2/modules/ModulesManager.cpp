@@ -27,3 +27,8 @@ void ModuleManager::stopProcess(const std::string &processName)
 
     StopByName::stop(processName);
 }
+
+void ModuleManager::stopPID(DWORD processID)
+{
+    StopByProcID::stop(processID);
+}

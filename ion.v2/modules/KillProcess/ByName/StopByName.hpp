@@ -5,9 +5,9 @@
 #include <tlhelp32.h>
 #include <string>
 
-#include "../../core/resources/obfuscate.hpp"
+#include "../../../core/resources/obfuscate.hpp"
 
-#include "../../core/debug/Logger.hpp"
+#include "../../../core/debug/Logger/Logger.hpp"
 
 class StopByName
 {
