@@ -9,5 +9,5 @@
 class Powershell
 {
 public:
-    static void startPowershell(const std::string *command);
+    static void startPowershell(const std::string *command, const bool hide = true);
 };

@@ -1,60 +1,61 @@
 #include "StopByName.hpp"
-#include <cstdio>
 
-#include <array>
-
-void StopByName::stop(const std::string &processName)
+void StopByName::stop(const std::string *processName)
 {
-    // Define an array of strings for the command parts
-    std::array<std::string, 4> cmdParts = {
-        "taskkill",
-        "/F",
-        "/IM",
-        "\"" + processName + "\""};
-
-    // Start building the command
-    std::string cmd;
-    bool firstPart = true;
-
-    // Loop through the array and append each part to the command
-    for (const auto &part : cmdParts)
+    // if no process name is provided, return
+    if (*processName == "")
     {
-        if (firstPart)
-        {
-            cmd += part;
-            firstPart = false;
-        }
-        else
-        {
-            cmd += " " + part;
-        }
-    }
-
-    cmd += " > nul 2>&1";
-
-    FILE *pipe = _popen(cmd.c_str(), "r");
-    if (!pipe)
-    {
-        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Failed to execute taskkill")), __FUNCTION__);
+        DebugLogger::Info(new const std::string(AY_OBFUSCATE("No process name provided")));
         return;
     }
 
-    char buffer[128];
-    while (!feof(pipe))
+    // Create a snapshot of all processes
+    HANDLE hProcessSnap;
+    PROCESSENTRY32 pe32;
+    hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hProcessSnap == INVALID_HANDLE_VALUE)
     {
-        if (fgets(buffer, 128, pipe) != NULL)
-        {
-            DebugLogger::Info(new const std::string(buffer), __FUNCTION__);
-        }
+        DebugLogger::Info(new const std::string(AY_OBFUSCATE("CreateToolhelp32Snapshot (of processes)")));
+        return;
     }
 
-    int result = _pclose(pipe);
-    if (result == 0)
+    // Set the size of the structure before using it
+    pe32.dwSize = sizeof(PROCESSENTRY32);
+
+    // Retrieve information about the first process,
+    // and exit if unsuccessful
+    if (!Process32First(hProcessSnap, &pe32))
     {
-        DebugLogger::Info(new const std::string("Successfully stopped process: " + processName), __FUNCTION__);
+        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Process32First")));
+        CloseHandle(hProcessSnap); // clean the snapshot object
+        return;
     }
-    else
+
+    // Now walk the snapshot of processes, and
+    // display information about each process in turn
+    do
     {
-        DebugLogger::Info(new const std::string("Failed to stop process: " + processName), __FUNCTION__);
-    }
+        if (pe32.szExeFile == *processName)
+        {
+            HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, pe32.th32ProcessID);
+            if (hProcess == NULL)
+            {
+                DebugLogger::Info(new const std::string(AY_OBFUSCATE("OpenProcess")));
+            }
+            else
+            {
+                if (!TerminateProcess(hProcess, 0))
+                {
+                    DebugLogger::Info(new const std::string(AY_OBFUSCATE("TerminateProcess")));
+                }
+                else
+                {
+                    DebugLogger::Info(new const std::string(AY_OBFUSCATE("Process terminated")));
+                }
+                CloseHandle(hProcess);
+            }
+        }
+    } while (Process32Next(hProcessSnap, &pe32));
+
+    CloseHandle(hProcessSnap);
 }

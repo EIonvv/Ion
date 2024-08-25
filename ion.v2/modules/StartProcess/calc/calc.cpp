@@ -14,7 +14,7 @@ void calc::execute()
         std::cout << "CreateProcess failed: " << GetLastError() << std::endl;
         return;
     } else {
-        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Successfully started calc.exe")), __FUNCTION__);
+        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Successfully started calc.exe")));
     }
 
     WaitForSingleObject(pi.hProcess, INFINITE);

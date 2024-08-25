@@ -3,14 +3,19 @@
 bool CoreManager::Initialize(int argc, char *argv[])
 {
 #ifdef WIN32
-    Logger(new const std::string(AY_OBFUSCATE("Windows")));
     bool check = Logger(new const std::string(AY_OBFUSCATE("Initializing CoreManager")), false);
 
     if (!check)
     {
         return false;
     }
-    
+
+    if (CoreManager::GetUsername().empty())
+    {
+        Logger(new const std::string(AY_OBFUSCATE("Username is empty")), false);
+        return false;
+    }
+
     if (check)
     {
         Logger(new const std::string(AY_OBFUSCATE("CoreManager initialized")), false);
@@ -45,7 +50,7 @@ bool CoreManager::Logger(const std::string *message, bool debug_mode)
 
         try
         {
-            logger->Info(message, __FUNCTION__);
+            logger->Info(message);
         }
         catch (const std::exception &e)
         {
@@ -63,26 +68,24 @@ bool CoreManager::Logger(const std::string *message, bool debug_mode)
     }
 }
 
+std::string CoreManager::CPU(){
+    return cpu::GetCpuInfo();
+}
+
+std::string CoreManager::OSVersion()
+{
+    return Version::GetOSVersion();
+}
+
 std::string CoreManager::GetUsername()
 {
-    std::string *username = new std::string(OS_Username::GetUsername());
+    OS_Username *os_username = new OS_Username();
 
-    if (username->empty())
-    {
-        Logger(new const std::string(AY_OBFUSCATE("Failed to get username")));
-        return std::string(AY_OBFUSCATE("Failed to get username"));
-    }
+    const std::string *username = new std::string(os_username->GetUsername());
 
-    if (username->length() > 0)
-    {
-        delete username;
+    delete os_username;
 
-        return *username;
-    }
-
-    delete username;
-
-    return 0;
+    return *username;
 }
 
 std::string CoreManager::Timezone()

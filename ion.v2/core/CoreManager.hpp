@@ -6,6 +6,8 @@
 #include "resources/obfuscate.hpp"
 #include "Debug/Logger/Logger.hpp"
 
+#include "systeminfo/cpu/cpu.hpp"
+#include "systeminfo/os_ver/version.hpp"
 #include "systeminfo/username/OS_Username.hpp"
 #include "systeminfo/timezone/getTimezone.hpp"
 
@@ -16,6 +18,8 @@ public:
     static bool Logger(const std::string *message, bool debug_mode = false);
 
 public:
+    static std::string CPU();
+    static std::string OSVersion();
     static std::string GetUsername();
     static std::string Timezone();
 };
