@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        logger->Info(new const std::string(input));
+        logger->Info(new const std::string("Process ID: " + std::to_string(module_manager->ProcessID(input))));
         module_manager->stopPID(module_manager->ProcessID(input));
     }
 
