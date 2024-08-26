@@ -5,7 +5,7 @@
 #include <string>
 #include "../../resources/obfuscate.hpp"
 
-class Version
+class Version : public std::string
 {
 public:
     static std::string GetOSVersion();

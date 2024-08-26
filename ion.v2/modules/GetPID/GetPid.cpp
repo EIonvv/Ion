@@ -1,4 +1,4 @@
-#include "pid.hpp"
+#include "GetPid.hpp"
 
 int process::findProcessByName(const char *procName)
 {

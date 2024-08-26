@@ -5,7 +5,7 @@
 
 #include "../../resources/obfuscate.hpp"
 
-class cpu
+class cpu : public std::string
 {
 public:
     static std::string GetCpuInfo();

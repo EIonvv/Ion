@@ -1,5 +1,5 @@
 add_subdirectory(KillProcess)
-add_subdirectory(PID)
+add_subdirectory(GetPID)
 add_subdirectory(StartProcess)
 
 target_sources(

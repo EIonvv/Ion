@@ -48,7 +48,7 @@ endif()
 # Include directories
 target_include_directories(ion PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(ion PRIVATE ws2_32 advapi32 secur32)
+target_link_libraries(ion PRIVATE ws2_32)
 
 # Set output directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)

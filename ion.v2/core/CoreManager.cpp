@@ -44,6 +44,14 @@ bool CoreManager::Initialize(int argc, char *argv[])
  */
 bool CoreManager::Logger(const std::string *message, bool debug_mode)
 {
+    const std::string *ver = new std::string(OSVersion().c_str());
+
+    if (ver->empty())
+    {
+        std::cerr << "OS Version is empty" << std::endl;
+        return false;
+    }
+
     if (debug_mode)
     {
         DebugLogger *logger = new DebugLogger();
@@ -64,13 +72,26 @@ bool CoreManager::Logger(const std::string *message, bool debug_mode)
     }
     else
     {
+        delete ver;
         return true;
     }
 }
 
-std::string CoreManager::CPU(){
+std::string CoreManager::CPU()
+{
     return cpu::GetCpuInfo();
 }
+
+std::string CoreManager::GetLocation()
+{
+    Location *location = new Location;
+
+    const std::string *loc = new std::string(location->GetLocation());
+
+    delete location;
+
+    return *loc;
+};
 
 std::string CoreManager::OSVersion()
 {

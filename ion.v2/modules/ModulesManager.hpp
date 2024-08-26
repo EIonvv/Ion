@@ -8,8 +8,8 @@
 #include "../modules/StartProcess/cmd/cmd.hpp"
 #include "../modules/StartProcess/powershell/powershell.hpp"
 
+#include "../modules/GetPID/GetPid.hpp"
 #include "../modules/KillProcess/ByName/StopByName.hpp"
-#include "../modules/PID/pid.hpp"
 #include "../modules/KillProcess/ByPID/StopByProcID.hpp"
 
 class ModuleManager

@@ -5,7 +5,7 @@
 
 #include "../../resources/obfuscate.hpp"
 
-class getTimezone
+class getTimezone : public std::string
 {
 public:
     static std::string Timezone();
