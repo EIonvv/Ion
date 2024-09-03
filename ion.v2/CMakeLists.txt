@@ -29,7 +29,7 @@ endif()
 
 add_executable(
   ion 
-  "Main.cpp"
+  "Ion.cpp"
 )
 
 add_subdirectory(core)

@@ -4,6 +4,7 @@
 #include "chrono"
 
 #include "resources/obfuscate.hpp"
+
 #include "Debug/Logger/Logger.hpp"
 
 #include "systeminfo/cpu/cpu.hpp"
@@ -14,12 +15,6 @@
 
 class CoreManager : public std::string
 {
-private:
-    static std::string version;
-    static std::string location;
-    static std::string os_version;
-    static std::string username;
-    static std::string timezone;
 
 public:
     static bool Initialize(int argc, char *argv[]);

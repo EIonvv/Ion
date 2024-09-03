@@ -3,6 +3,7 @@
 #include <iostream>
 #include <Windows.h>
 
+#include "../modules/StartProcess/beamng/beamng.hpp"
 #include "../modules/StartProcess/calc/calc.hpp"
 #include "../modules/StartProcess/notepad/notepad.hpp"
 #include "../modules/StartProcess/cmd/cmd.hpp"
@@ -16,6 +17,7 @@ class ModuleManager
 {
 
 public:
+    static int startBeamNG();
     static void startCalc();
     static void startNotepad();
     static void startCmd(std::string command);

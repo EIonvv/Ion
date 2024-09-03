@@ -12,11 +12,11 @@ bool CoreManager::Initialize(int argc, char *argv[])
 
     if (CoreManager::GetUsername().empty())
     {
-        Logger(new const std::string(AY_OBFUSCATE("Username is empty")), false);
+        Logger(new const std::string(AY_OBFUSCATE("Failed to get username")), false);
         return false;
     }
 
-    if (check)
+    if (check == true)
     {
         Logger(new const std::string(AY_OBFUSCATE("CoreManager initialized")), false);
     }
@@ -26,12 +26,12 @@ bool CoreManager::Initialize(int argc, char *argv[])
 
 #ifdef __linux__
     Logger(new const std::string("Linux"));
-    return true;
+    return false;
 #endif
 
 #ifdef __APPLE__
     Logger(new const std::string("MacOS"));
-    return true;
+    return false;
 #endif
 }
 
@@ -44,13 +44,6 @@ bool CoreManager::Initialize(int argc, char *argv[])
  */
 bool CoreManager::Logger(const std::string *message, bool debug_mode)
 {
-    const std::string *ver = new std::string(OSVersion().c_str());
-
-    if (ver->empty())
-    {
-        std::cerr << "OS Version is empty" << std::endl;
-        return false;
-    }
 
     if (debug_mode)
     {
@@ -72,7 +65,6 @@ bool CoreManager::Logger(const std::string *message, bool debug_mode)
     }
     else
     {
-        delete ver;
         return true;
     }
 }

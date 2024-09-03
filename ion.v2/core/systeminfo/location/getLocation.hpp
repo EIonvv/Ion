@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "../../resources/obfuscate.hpp"
+
 class Location : public std::string
 {
 public:

