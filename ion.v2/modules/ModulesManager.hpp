@@ -3,6 +3,8 @@
 #include <iostream>
 #include <Windows.h>
 
+#include "../core/CoreManager.hpp"
+
 #include "../modules/StartProcess/beamng/beamng.hpp"
 #include "../modules/StartProcess/calc/calc.hpp"
 #include "../modules/StartProcess/notepad/notepad.hpp"

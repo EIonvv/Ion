@@ -11,10 +11,10 @@ void calc::execute()
 
     if (!CreateProcess(AY_OBFUSCATE("C:\\Windows\\System32\\calc.exe"), NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
     {
-        std::cout << "CreateProcess failed: " << GetLastError() << std::endl;
+        CoreManager::Logger(new const std::string(AY_OBFUSCATE("Failed to start calc.exe")), false);
         return;
     } else {
-        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Successfully started calc.exe")));
+        CoreManager::Logger(new const std::string(AY_OBFUSCATE("Successfully started calc.exe")), true);
     }
 
     WaitForSingleObject(pi.hProcess, INFINITE);

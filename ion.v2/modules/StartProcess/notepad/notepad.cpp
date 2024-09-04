@@ -12,11 +12,11 @@ void notepad::start()
     // Start the process
     if (!CreateProcess(AY_OBFUSCATE("C:\\Windows\\System32\\notepad.exe"), NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
     {
-        DebugLogger::Info(new const std::string(AY_OBFUSCATE("CreateProcess failed")));
+        CoreManager::Logger(new const std::string(AY_OBFUSCATE("Failed to start notepad")), false);
     }
     else
     {
-        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Notepad started")));
+        CoreManager::Logger(new const std::string(AY_OBFUSCATE("Notepad started")), true);
     }
 
     // Close process and thread handles

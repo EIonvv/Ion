@@ -22,7 +22,7 @@ int process::findProcessByName(const char *procName)
     // if pid is -1, the process was not found
     if (pid == -1)
     {
-        DebugLogger::Info(new const std::string(AY_OBFUSCATE("Process not found.")));
+        CoreManager::Logger(new const std::string(AY_OBFUSCATE("Process not found.")), false);
     }
 
     CloseHandle(snapshot);
