@@ -1,4 +1,5 @@
 add_subdirectory(debug)
+add_subdirectory(network)
 add_subdirectory(resources)
 add_subdirectory(systeminfo)
 

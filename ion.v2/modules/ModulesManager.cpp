@@ -21,9 +21,16 @@ void ModuleManager::startCmd(std::string command)
     cmd::execute(command);
 }
 
-void ModuleManager::startPowershell(const std::string *command, const bool hide)
+bool ModuleManager::startPowershell(const std::string *command, const bool hide)
 {
-    Powershell::startPowershell(command, hide);
+    // Powershell::startPowershell(command, hide);
+    try {
+        Powershell::startPowershell(command, hide);
+    } catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
+        return false;
+    }
+    return true;
 }
 
 void ModuleManager::stopProcess(const std::string *processName)

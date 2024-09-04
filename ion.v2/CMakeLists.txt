@@ -4,7 +4,7 @@ project(ion LANGUAGES CXX C VERSION 1.0.1)
 set_property(GLOBAL PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
 
 # Set the build directory explicitly
-set(CMAKE_BINARY_DIR "E:/C++/Ion/build")
+set(CMAKE_BINARY_DIR "Z:/Projects/C++/Ion/build")
 set(CMAKE.parallel -j${number_of_cores})
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -72,5 +72,3 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT i
 install(TARGETS ion
         RUNTIME DESTINATION bin
         COMPONENT Runtime)
-
-

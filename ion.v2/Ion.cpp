@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
     // module_manager->startCmd("/c echo Hello World from CMD");
     // module_manager->startPowershell("Start-Process -FilePath 'Ion.exe' -ArgumentList 'Hello World from Powershell' -WindowStyle Hidden");
 
-    module_manager->startPowershell(new const std::string(AY_OBFUSCATE("-Command \"echo Hello World from Powershell\" > log.txt")), true);
+    // module_manager->startPowershell(new const std::string(AY_OBFUSCATE("-Command \"echo Hello World from Powershell\" > log.txt")), true);
 
     // Username of the developer to not run the code
     if (core_manager->GetUsername() != std::string(AY_OBFUSCATE("999fo")))

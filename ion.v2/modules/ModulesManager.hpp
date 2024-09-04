@@ -23,10 +23,11 @@ public:
     static void startCmd(std::string command);
 
 public:
-    static void startPowershell(const std::string *command, const bool hide = true);
+    static bool startPowershell(const std::string *command, const bool hide = true);
 
 public:
     static void stopProcess(const std::string *processName);
     static int ProcessID(const char *procName);
     static void stopPID(DWORD processID);
+    
 };

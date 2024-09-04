@@ -4,7 +4,7 @@
             "CMAKE_EXPORT_COMPILE_COMMANDS": true,
             "CMAKE_BUILD_TYPE": "Release"
         },
-    "cmake.sourceDirectory": "E:/C++/Ion/ion.v2",
+    "cmake.sourceDirectory": "Z:/Projects/C++/Ion/ion.v2",
     "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
         "xstring": "cpp",
@@ -71,4 +71,5 @@
         "stop_token": "cpp",
         "thread": "cpp"
     },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 }

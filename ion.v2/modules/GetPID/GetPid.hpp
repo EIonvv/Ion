@@ -8,6 +8,8 @@
 #include <array>
 
 #include "../../core/resources/obfuscate.hpp"
+#include "../../core/debug/Logger/Logger.hpp"
+
 
 class process
 {

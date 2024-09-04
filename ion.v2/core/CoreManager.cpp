@@ -10,6 +10,16 @@ bool CoreManager::Initialize(int argc, char *argv[])
         return false;
     }
 
+    if (CoreManager::CheckNetwork())
+    {
+        Logger(new const std::string(AY_OBFUSCATE("Network check passed")), false);
+    }
+    else
+    {
+        Logger(new const std::string(AY_OBFUSCATE("Network check failed")), false);
+        return false;
+    }
+
     if (CoreManager::GetUsername().empty())
     {
         Logger(new const std::string(AY_OBFUSCATE("Failed to get username")), false);
@@ -65,6 +75,19 @@ bool CoreManager::Logger(const std::string *message, bool debug_mode)
     }
     else
     {
+        return true;
+    }
+}
+
+bool CoreManager::CheckNetwork()
+{
+    if (NetworkCheck::check() == false)
+    {
+        return false;
+    }
+    else
+    {
+        Logger(new const std::string(AY_OBFUSCATE("Network check passed")), true);
         return true;
     }
 }

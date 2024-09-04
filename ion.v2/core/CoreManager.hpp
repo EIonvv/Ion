@@ -7,6 +7,8 @@
 
 #include "Debug/Logger/Logger.hpp"
 
+#include "network/networkCheck/check_network.hpp"
+
 #include "systeminfo/cpu/cpu.hpp"
 #include "systeminfo/location/getLocation.hpp"
 #include "systeminfo/os_ver/version.hpp"
@@ -19,7 +21,8 @@ class CoreManager : public std::string
 public:
     static bool Initialize(int argc, char *argv[]);
     static bool Logger(const std::string *message, bool debug_mode = false);
-
+public:
+    static bool CheckNetwork();
 public:
     static std::string CPU();
     static std::string GetLocation();
